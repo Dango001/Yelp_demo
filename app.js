@@ -4,6 +4,7 @@ const path = require('path')
 const mongoose = require('mongoose')
 const campGround = require('./models/campGround');
 const methodOverride = require('method-override');
+const ejsMate = require('ejs-mate');
 
 mongoose.connect('mongodb://localhost:27017/yelp-camp')
     .then(() => {
@@ -14,7 +15,7 @@ mongoose.connect('mongodb://localhost:27017/yelp-camp')
         console.log(ERR)
     });
 
-
+app.engine('ejs', ejsMate)
 app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'))
 app.use(express.urlencoded({ extended: true }))
